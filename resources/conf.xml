@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <heightMap>
+        <minH>70</minH>
+        <maxH>250</maxH>
+        <randomCoef>250</randomCoef>
+        <wrap>true</wrap>
+        <sectionSize>65</sectionSize>
+    </heightMap>
+</settings>
