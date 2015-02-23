@@ -21,6 +21,15 @@ public class SettingManager {
     private static final String FILE_NAME = "conf.xml";
 
     private static final String HEIGHT_MAP_SECTION = "heightMap";
+
+    private static final String HEIGHT_NORMAL_SECTION = "heightNormal";
+
+    private static final String MAIN_SECTION = "main";
+
+    private static final String ISLAND_SECTION = "island";
+
+    private static final String RIVER_SECTION = "river";
+
     Document doc;
 
     public void init() throws SettingException{
@@ -49,11 +58,43 @@ public class SettingManager {
 
     }
 
-    public  <T> T getHeightMapSetting(String param,T defaultValue,Class className){
-        if(doc==null){
-            return  defaultValue;
+    public  <T> T getHeightMapSetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
         }
-        NodeList list = doc.getElementsByTagName(HEIGHT_MAP_SECTION);
+        return getSection(param,defaultValue,className,HEIGHT_MAP_SECTION);
+
+    }
+    public  <T> T getHeightNormalSetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
+        }
+        return getSection(param,defaultValue,className,HEIGHT_NORMAL_SECTION);
+
+    }
+    public  <T> T getMainSetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
+        }
+        return getSection(param,defaultValue,className,MAIN_SECTION);
+
+    }
+    public  <T> T getIslandSetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
+        }
+        return getSection(param,defaultValue,className,ISLAND_SECTION);
+
+    }
+    public  <T> T getRiverSetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
+        }
+        return getSection(param,defaultValue,className,RIVER_SECTION);
+
+    }
+    private <T> T getSection(String param,T defaultValue,Class className,String sectionName) {
+        NodeList list = doc.getElementsByTagName(sectionName);
         if(list.getLength()==0){
             return  defaultValue;
         }

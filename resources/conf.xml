@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
     <heightMap>
-        <minH>70</minH>
+        <minH>0</minH>
         <maxH>250</maxH>
+        <start>70</start>
+        <landlvl>100</landlvl>
+        <islandLvl>20</islandLvl>
         <randomCoef>250</randomCoef>
         <wrap>true</wrap>
-        <sectionSize>65</sectionSize>
+        <sectionSize>33</sectionSize>
+        <needUpCenter>false</needUpCenter>
     </heightMap>
+    <heightNormal>
+        <height0>50</height0>
+        <height1>70</height1>
+        <height2>100</height2>
+        <height3>120</height3>
+        <height4>140</height4>
+        <height5>150</height5>
+        <height6>170</height6>
+    </heightNormal>
+    <main>
+        <size>65</size>
+        <drawSize>12</drawSize>
+        <fontNeed>false</fontNeed>
+        <font>10</font>
+    </main>
+    <island>
+        <count>15</count>
+        <minsize>8</minsize>
+        <maxsize>12</maxsize>
+    </island>
 </settings>

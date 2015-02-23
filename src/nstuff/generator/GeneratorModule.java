@@ -2,9 +2,13 @@ package nstuff.generator;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
-import nstuff.generator.algoritm.heightmap.DiamondSquareDisplacement;
-import nstuff.generator.algoritm.heightmap.HeightMapGenerator;
-import nstuff.generator.algoritm.heightmap.MiddlePointDisplacement;
+import com.google.inject.name.Named;
+import com.google.inject.name.Names;
+import nstuff.generator.algoritm.grower.CircleGrower;
+import nstuff.generator.algoritm.grower.Grower;
+import nstuff.generator.algoritm.heightmap.*;
+import nstuff.generator.logic.LogicChanger;
+import nstuff.generator.logic.island.LandMaker;
 import nstuff.generator.settings.SettingManager;
 
 import java.util.AbstractMap;
@@ -17,6 +21,9 @@ public class GeneratorModule  extends AbstractModule{
     protected void configure() {
         bind(SettingManager.class).in(Singleton.class);
         bind(HeightMapGenerator.class).to(DiamondSquareDisplacement.class).in(Singleton.class);
+        bind(HeightNormalizer.class).to(HeightNormalizerImpl.class).in(Singleton.class);
+        bind(Grower.class).annotatedWith(Names.named("IslandGrower")).to(CircleGrower.class).in(Singleton.class);
+        bind(LogicChanger.class).annotatedWith(Names.named("IslandMaker")).to(LandMaker.class).in(Singleton.class);
         bind(Generator.class).in(Singleton.class);
     }
 }

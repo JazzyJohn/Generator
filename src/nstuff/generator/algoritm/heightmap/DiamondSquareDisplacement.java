@@ -1,6 +1,6 @@
 package nstuff.generator.algoritm.heightmap;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import nstuff.generator.entity.HexMap;
 import nstuff.generator.entity.Map;
 import nstuff.generator.entity.MapPoint;
 import nstuff.generator.settings.SettingManager;
@@ -8,8 +8,10 @@ import nstuff.generator.settings.SettingManager;
 
 import javax.inject.Inject;
 import java.util.Random;
+
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+
 /**
  * Created by vania_000 on 21.02.2015.
  */
@@ -24,13 +26,17 @@ public class DiamondSquareDisplacement implements HeightMapGenerator {
 
     private int maxH;
 
+    private int start;
+
     private int randomCoef;
 
     private int range;
 
     private int sectionSize;
 
-    private boolean wrap=false;
+    private boolean needUpCenter;
+
+    private boolean wrap = false;
 
     private Random rand = new Random();
 
@@ -40,74 +46,96 @@ public class DiamondSquareDisplacement implements HeightMapGenerator {
 
     @Override
     public void generate(Map map) throws HeightMapException {
-        this.map =map;
-        minH = settings.getHeightMapSetting("minH",0,Integer.class);
-        sectionSize = settings.getHeightMapSetting("sectionSize",33,Integer.class);
-        maxH = settings.getHeightMapSetting("maxH",256,Integer.class);
-        randomCoef = settings.getHeightMapSetting("randomCoef",10,Integer.class);
-        wrap = settings.getHeightMapSetting("wrap",false, Boolean.class);
-        range= maxH-minH;
+        this.map = map;
+        minH = settings.getHeightMapSetting("minH", 0, Integer.class);
+        start = settings.getHeightMapSetting("start", 0, Integer.class);
+        sectionSize = settings.getHeightMapSetting("sectionSize", 33, Integer.class);
+        maxH = settings.getHeightMapSetting("maxH", 256, Integer.class);
+        randomCoef = settings.getHeightMapSetting("randomCoef", 10, Integer.class);
+        needUpCenter = settings.getHeightMapSetting("needUpCenter", false, Boolean.class);
+        wrap = settings.getHeightMapSetting("wrap", false, Boolean.class);
+        range = maxH - minH;
+        if (sectionSize > map.getWidth()) {
+            sectionSize = map.getWidth();
+        }
+        int horCount = (map.getWidth() + 1) / sectionSize;
+        int verCount = (map.getHeight() + 1) / sectionSize;
+        for (int i = 0; i < horCount; i++) {
+            for (int j = 0; j < verCount; j++) {
 
-        int horCount =map.getWidth()/sectionSize;
-        int verCount =map.getHeight()/sectionSize;
-        for(int i =0;i <horCount;i++){
-            for(int j=0;j<verCount;j++){
-                generateStart(i,j);
-                center = true;
-                oneStep((map.getWidth()-1)/2,i,j);
+                center = needUpCenter;
+                int xMin = i * sectionSize - 1;
+                int xMax = (i + 1) * sectionSize - 1;
+                if (i == 0) {
+                    xMin = 0;
+                    xMax = sectionSize;
+                }
+                int yMin = j * sectionSize - 1;
+                int yMax = (j + 1) * sectionSize - 1;
+                if (j == 0) {
+                    yMin = 0;
+                    yMax = sectionSize;
+                }
+
+                logger.debug(("section " + i + " " + j));
+                generateStart(xMin, xMax, yMin, yMax);
+                oneStep((sectionSize - 1) / 2, xMin, xMax, yMin, yMax);
             }
         }
 
 
     }
-    private  void generateStart(int x, int y){
-        MapPoint rightTop = map.getPoint(sectionSize*(x+1)-1,sectionSize*y),
-                leftBottom = map.getPoint(sectionSize*x,sectionSize*(x+1)-1),
-                rightBottom = map.getPoint(sectionSize*(x+1)-1,sectionSize-1),
-                leftTop = map.getPoint(sectionSize*x,sectionSize*y);
 
-        rightTop.setStartHeight(getStartHeight());
+    private void generateStart(int xMin, int xMax, int yMin, int yMax) {
+        MapPoint rightTop = map.getPoint(xMax - 1, yMin),
+                leftBottom = map.getPoint(xMin, yMax - 1),
+                rightBottom = map.getPoint(xMax - 1, yMax - 1),
+                leftTop = map.getPoint(xMin, yMin);
 
-        leftBottom.setStartHeight(getStartHeight());
-        rightBottom.setStartHeight(getStartHeight());
-        leftTop.setStartHeight(getStartHeight());
 
-        logger.debug("Right Top"+ rightTop);
+        rightTop.setStartHeight(getStartHeight(xMax == map.getWidth() && yMin == 0));
 
-        logger.debug("Right Bot"+ rightBottom);
+        leftBottom.setStartHeight(getStartHeight((xMin == 0 && yMax == map.getHeight())));
+        rightBottom.setStartHeight(getStartHeight((xMax == map.getWidth() && yMax == map.getHeight())));
+        leftTop.setStartHeight(getStartHeight((xMin == 0 && yMin == 0)));
 
-        logger.debug("Left Top"+ leftTop);
+        logger.debug("Right Top" + rightTop);
 
-        logger.debug("Left Bot"+ leftBottom);
+        logger.debug("Right Bot" + rightBottom);
+
+        logger.debug("Left Top" + leftTop);
+
+        logger.debug("Left Bot" + leftBottom);
 
     }
 
-    private int getStartHeight(){
-        if(!wrap) {
+    private int getStartHeight(boolean isSide) {
+        if (wrap && isSide) {
+            return start;
+        } else {
             return rand.nextInt(range) + minH;
-        }else{
-            return minH;
         }
     }
-    private  int getMiddleHeight(int stepSize,int... heights){
-        int sum  =0;
+
+    private int getMiddleHeight(int stepSize, int... heights) {
+        int sum = 0;
 
         //String str="";
-        for(int i :heights){
-            sum+=i;
-          //  str+=i + "  ";
+        for (int i : heights) {
+            sum += i;
+            //  str+=i + "  ";
         }
-        sum =sum / heights.length;
-        int maxDisplacement=0;
-        for(int i:heights){
-            int dif = Math.abs(sum-i);
-            if(dif>maxDisplacement){
-                maxDisplacement =dif;
+        sum = sum / heights.length;
+        int maxDisplacement = 0;
+        for (int i : heights) {
+            int dif = Math.abs(sum - i);
+            if (dif > maxDisplacement) {
+                maxDisplacement = dif;
             }
         }
 
-       // System.out.println(str + sum);
-        if(center){
+        // System.out.println(str + sum);
+        if (center) {
 
             center = false;
             int displacment = 0;
@@ -118,7 +146,7 @@ public class DiamondSquareDisplacement implements HeightMapGenerator {
             sum += displacment;
             logger.debug(sum);
             //logger.debug(str +sum);
-        }else {
+        } else {
             int displacment = 0;
             if (randomCoef != 0) {
                 displacment = Math.round((rand.nextFloat() - 0.5f) * stepSize * 2 / sectionSize * randomCoef);
@@ -130,65 +158,66 @@ public class DiamondSquareDisplacement implements HeightMapGenerator {
 
     }
 
-    private void oneStep(int stepSize,int xStep,int yStep){
-        if(stepSize==0){
+    private void oneStep(int stepSize, int xMin, int xMax, int yMin, int yMax) {
+        if (stepSize == 0) {
             return;
         }
-        for(int i=xStep*sectionSize;i+stepSize*2<(xStep+1)*sectionSize;i+=stepSize*2){
-            for(int j =yStep*sectionSize;j+stepSize*2<(yStep+1)*sectionSize;j+=stepSize*2) {
+        for (int i = xMin; i + stepSize * 2 < xMax; i += stepSize * 2) {
+            for (int j = yMin; j + stepSize * 2 < yMax; j += stepSize * 2) {
                 squareStep(stepSize, map.getPoint(i, j));
             }
         }
-        for(int i=xStep*sectionSize+stepSize;i<(xStep+1)*sectionSize;i+=stepSize*2){
-            for(int j =yStep*sectionSize;j<(yStep+1)*sectionSize;j+=stepSize*2) {
+        for (int i = xMin + stepSize; i < xMax; i += stepSize * 2) {
+            for (int j = yMin; j < yMax; j += stepSize * 2) {
                 diamondStep(stepSize, map.getPoint(i, j));
             }
         }
-        for(int i=xStep*sectionSize;i<(xStep+1)*sectionSize;i+=stepSize*2){
-            for(int j =yStep*sectionSize+stepSize;j<(yStep+1)*sectionSize;j+=stepSize*2) {
+        for (int i = xMin; i < xMax; i += stepSize * 2) {
+            for (int j = yMin + stepSize; j < yMax; j += stepSize * 2) {
                 diamondStep(stepSize, map.getPoint(i, j));
             }
         }
-       // randomCoef=randomCoef/2;
-        oneStep(stepSize/2,xStep,yStep);
+        // randomCoef=randomCoef/2;
+        oneStep(stepSize / 2, xMin, xMax, yMin, yMax);
 
     }
 
-    private void squareStep(int stepSize,MapPoint corner){
-        MapPoint rightTop = map.getPoint(corner.getX()+stepSize*2,corner.getY()),
-                leftBottom = map.getPoint(corner.getX(),corner.getY()+stepSize*2),
-                rightBottom = map.getPoint(corner.getX()+stepSize*2,corner.getY()+stepSize*2),
-                center = map.getPoint(corner.getX()+stepSize,corner.getY()+stepSize);
-        center.setHeight(getMiddleHeight(stepSize,corner.getHeight(),leftBottom.getHeight(),rightBottom.getHeight(),rightTop.getHeight()));
+    private void squareStep(int stepSize, MapPoint corner) {
+        MapPoint rightTop = map.getPoint(corner.getX() + stepSize * 2, corner.getY()),
+                leftBottom = map.getPoint(corner.getX(), corner.getY() + stepSize * 2),
+                rightBottom = map.getPoint(corner.getX() + stepSize * 2, corner.getY() + stepSize * 2),
+                center = map.getPoint(corner.getX() + stepSize, corner.getY() + stepSize);
+        center.setHeight(getMiddleHeight(stepSize, corner.getHeight(), leftBottom.getHeight(), rightBottom.getHeight(), rightTop.getHeight()));
 
 
     }
-    private void diamondStep(int stepSize,MapPoint center){
+
+    private void diamondStep(int stepSize, MapPoint center) {
         MapPoint right;
-        if(center.getX()+stepSize>=map.getWidth()){
-            right = map.getPoint(center.getX() + stepSize - map.getWidth()+1, center.getY());
-        }else{
-            right =map.getPoint(center.getX()+stepSize,center.getY());
+        if (center.getX() + stepSize >= map.getWidth()) {
+            right = map.getPoint(center.getX() + stepSize - map.getWidth() + 1, center.getY());
+        } else {
+            right = map.getPoint(center.getX() + stepSize, center.getY());
         }
         MapPoint bottom;
-        if(center.getY()+stepSize>=map.getHeight()){
-            bottom = map.getPoint(center.getX(),center.getY()+stepSize-map.getHeight()+1);
-        }else{
-            bottom =map.getPoint(center.getX(),center.getY()+stepSize);
+        if (center.getY() + stepSize >= map.getHeight()) {
+            bottom = map.getPoint(center.getX(), center.getY() + stepSize - map.getHeight() + 1);
+        } else {
+            bottom = map.getPoint(center.getX(), center.getY() + stepSize);
         }
         MapPoint left;
-        if(center.getX()-stepSize<0){
-            left = map.getPoint(map.getWidth()-1+(center.getX()-stepSize),center.getY());
-        }else{
-            left =map.getPoint(center.getX()-stepSize,center.getY());
+        if (center.getX() - stepSize < 0) {
+            left = map.getPoint(map.getWidth() - 1 + (center.getX() - stepSize), center.getY());
+        } else {
+            left = map.getPoint(center.getX() - stepSize, center.getY());
         }
         MapPoint top;
-        if(center.getY()-stepSize<0){
-            top = map.getPoint(center.getX(),map.getHeight()-1+(center.getY()-stepSize));
-        }else{
-            top =map.getPoint(center.getX(),center.getY()-stepSize);
+        if (center.getY() - stepSize < 0) {
+            top = map.getPoint(center.getX(), map.getHeight() - 1 + (center.getY() - stepSize));
+        } else {
+            top = map.getPoint(center.getX(), center.getY() - stepSize);
         }
-        center.setHeight(getMiddleHeight(stepSize,right.getHeight(), bottom.getHeight(),left.getHeight(),top.getHeight()));
+        center.setHeight(getMiddleHeight(stepSize, right.getHeight(), bottom.getHeight(), left.getHeight(), top.getHeight()));
     }
 
 }

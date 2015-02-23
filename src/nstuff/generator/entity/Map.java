@@ -1,35 +1,23 @@
 package nstuff.generator.entity;
 
+import java.util.List;
+
 /**
- * Created by vania_000 on 21.02.2015.
+ * Created by vania_000 on 22.02.2015.
  */
-public class Map {
+public interface Map {
 
-    private MapPoint[][]  mapPoints;
+    public MapPoint getPoint(int x,int y);
 
-    private int width;
+    public int getWidth();
 
-    private int height;
+    public int getHeight();
 
-    public Map( int w,int h){
-        mapPoints = new MapPoint[w][h];
-        width = w;
-        height = h;
-    }
-    public MapPoint getPoint(int x,int y){
-        if(mapPoints[x][y]==null){
-            mapPoints[x][y] = new MapPoint(x,y);
-        }
-        return mapPoints[x][y];
-    }
+    List<MapPoint> getRadius(int startX, int startY, int radius);
 
-    public int getWidth() {
-        return width;
-    }
+    public int getSeaLevel();
 
-    public int getHeight() {
-        return height;
-    }
+    public int getIslandLevel();
 
-
+  //  MapPoint getDrawPoint(int i, int j);
 }

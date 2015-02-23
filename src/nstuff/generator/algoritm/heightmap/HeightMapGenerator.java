@@ -1,5 +1,6 @@
 package nstuff.generator.algoritm.heightmap;
 
+import nstuff.generator.entity.HexMap;
 import nstuff.generator.entity.Map;
 
 /**
