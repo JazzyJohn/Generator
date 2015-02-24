@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
+    <seed>
+        <seed>777777777</seed>
+        <repeat>true</repeat>
+    </seed>
+    <main>
+        <size>65</size>
+        <drawSize>12</drawSize>
+        <fontNeed>false</fontNeed>
+        <font>10</font>
+    </main>
+    <island>
+        <count>15</count>
+        <minsize>8</minsize>
+        <maxsize>12</maxsize>
+    </island>
     <heightMap>
         <minH>0</minH>
         <maxH>250</maxH>
@@ -20,15 +35,9 @@
         <height5>150</height5>
         <height6>170</height6>
     </heightNormal>
-    <main>
-        <size>65</size>
-        <drawSize>12</drawSize>
-        <fontNeed>false</fontNeed>
-        <font>10</font>
-    </main>
-    <island>
-        <count>15</count>
-        <minsize>8</minsize>
-        <maxsize>12</maxsize>
-    </island>
+    <river>
+        <riverCnt>20</riverCnt>
+        <riverDistance>2</riverDistance>
+        <lakeDepth>40</lakeDepth>
+    </river>
 </settings>

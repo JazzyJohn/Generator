@@ -43,9 +43,17 @@ public class Generator {
     @Named("IslandMaker")
     private LogicChanger islandMaker;
 
-    Random rand = new Random();
+    @Inject
+    Random rand;
+
+    int seed;
+
+    boolean repeat;
 
     public Map generateHexMap(int x, int y) throws GeneratorException {
+        if(seed!=0&&repeat){
+            rand.setSeed(seed);
+        }
         Map map = new HexMap(x,y,
                 settingManager.getHeightMapSetting("landlvl",0,Integer.class),
                 settingManager.getHeightMapSetting("islandLvl",0,Integer.class));
@@ -56,9 +64,9 @@ public class Generator {
         int maxSize = settingManager.getIslandSetting("maxsize",5,Integer.class);
         for(int i=0;i<count;i++){
             int size= rand.nextInt(maxSize-minSize)+minSize;
-            int islandX = rand.nextInt(x);
+            int islandX =  rand.nextInt(x);
 
-            int islandY  = rand.nextInt(y);
+            int islandY  =  rand.nextInt(y);
 
             islandGrower.setUp(size,islandX,islandY);
             islandGrower.grow(map,islandMaker);
@@ -71,6 +79,9 @@ public class Generator {
 
     public void init() throws GeneratorException {
         settingManager.init();
+        seed =settingManager.getSection("seed", 0, Integer.class, "seed");
+        rand.setSeed(seed);
+        repeat =settingManager.getSection("seed", false, Boolean.class, "repeat");
         islandMaker.init();
         heightNormalizer.init();
         riverGenerator.init();

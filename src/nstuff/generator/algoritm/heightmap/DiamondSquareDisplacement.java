@@ -38,7 +38,8 @@ public class DiamondSquareDisplacement implements HeightMapGenerator {
 
     private boolean wrap = false;
 
-    private Random rand = new Random();
+    @Inject
+    Random rand;
 
     private Map map;
 

@@ -1,5 +1,7 @@
 package nstuff.generator.entity;
 
+import nstuff.generator.logic.LogicFinder;
+
 import java.util.List;
 
 /**
@@ -19,5 +21,14 @@ public interface Map {
 
     public int getIslandLevel();
 
+    boolean isInRadius(int startX, int startY, int radius,LogicFinder finder);
+
+    List<MapPoint> getRadius(int startX, int startY, int radius,boolean valid);
   //  MapPoint getDrawPoint(int i, int j);
+
+    int distance(int startX, int startY, int x, int y);
+
+    void addRiver(River river);
+
+    void addLake(Lake lake);
 }

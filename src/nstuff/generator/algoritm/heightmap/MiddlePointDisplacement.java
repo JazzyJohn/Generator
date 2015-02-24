@@ -30,7 +30,8 @@ public class MiddlePointDisplacement implements HeightMapGenerator {
 
     private int range;
 
-    private Random rand = new Random();
+    @Inject
+    Random rand;
 
     private Map map;
 

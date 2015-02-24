@@ -1,5 +1,6 @@
 package nstuff.generator.entity;
 
+import com.sun.org.apache.regexp.internal.recompile;
 import nstuff.generator.Generator;
 import nstuff.generator.geography.PointHeightType;
 import nstuff.generator.geography.PointLandType;
@@ -48,6 +49,10 @@ public class MapPoint {
         return height;
     }
 
+    public River river;
+
+    public Lake lake;
+
     public void setHeight(int height) {
         if(landType==PointLandType.OCEAN&&map.getSeaLevel()<height){
             if(height-map.getSeaLevel()<map.getIslandLevel()){
@@ -78,8 +83,9 @@ public class MapPoint {
         landType = PointLandType.LAND;
 
     }
-    public  void makeRiver(){
+    public  void makeRiver(River river){
         landType = PointLandType.RIVER;
+        this.river = river;
     }
 
     public PointHeightType getHeightType() {
@@ -98,5 +104,16 @@ public class MapPoint {
     public String toString() {
 
         return "x:"+x+" y:"+y+" height:"+height;
+    }
+
+    public boolean isWater() {
+        return landType != PointLandType.LAND;
+    }
+    public boolean isSaltWater() {
+        return landType == PointLandType.OCEAN;
+    }
+    public void makeLake(Lake lake) {
+        landType = PointLandType.LAKE;
+        this.lake = lake;
     }
 }

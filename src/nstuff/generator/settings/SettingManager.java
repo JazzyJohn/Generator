@@ -93,7 +93,7 @@ public class SettingManager {
         return getSection(param,defaultValue,className,RIVER_SECTION);
 
     }
-    private <T> T getSection(String param,T defaultValue,Class className,String sectionName) {
+    public <T> T getSection(String param,T defaultValue,Class className,String sectionName) {
         NodeList list = doc.getElementsByTagName(sectionName);
         if(list.getLength()==0){
             return  defaultValue;
