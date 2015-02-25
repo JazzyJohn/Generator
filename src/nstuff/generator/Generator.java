@@ -4,6 +4,7 @@ import nstuff.generator.algoritm.grower.Grower;
 import nstuff.generator.algoritm.heightmap.HeightMapGenerator;
 import nstuff.generator.algoritm.heightmap.HeightNormalizer;
 import nstuff.generator.algoritm.rivers.RiverGenerator;
+import nstuff.generator.algoritm.temperature.TemperatureCalculator;
 import nstuff.generator.entity.HexMap;
 import nstuff.generator.entity.Map;
 import nstuff.generator.logic.LogicChanger;
@@ -44,6 +45,9 @@ public class Generator {
     private LogicChanger islandMaker;
 
     @Inject
+    private TemperatureCalculator temperatureCalculator;
+
+    @Inject
     Random rand;
 
     int seed;
@@ -51,7 +55,7 @@ public class Generator {
     boolean repeat;
 
     public Map generateHexMap(int x, int y) throws GeneratorException {
-        if(seed!=0&&repeat){
+        if(seed!=0&&!repeat){
             rand.setSeed(seed);
         }
         Map map = new HexMap(x,y,
@@ -71,9 +75,15 @@ public class Generator {
             islandGrower.setUp(size,islandX,islandY);
             islandGrower.grow(map,islandMaker);
         }
+
         heightMapGenerator.generate(map);
+
         heightNormalizer.normalize(map);
+
         riverGenerator.generate(map);
+
+        temperatureCalculator.calculateForMap(map);
+
         return  map;
     }
 
@@ -85,5 +95,6 @@ public class Generator {
         islandMaker.init();
         heightNormalizer.init();
         riverGenerator.init();
+        temperatureCalculator.init();
     }
 }

@@ -7,6 +7,7 @@ import nstuff.generator.entity.Map;
 import nstuff.generator.entity.MapPoint;
 import nstuff.generator.geography.PointHeightType;
 import nstuff.generator.geography.PointLandType;
+import nstuff.generator.geography.PointTemperatureType;
 import nstuff.generator.settings.SettingManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +33,8 @@ public class Drawer implements ActionListener,MouseListener {
     enum MapType{
         HEIGHT_MAP,
         ALL_IN,
-        WATER;
+        WATER,
+        TEMPERATURE;
     }
 
     static Logger logger = LogManager.getLogger(Drawer.class);
@@ -56,6 +58,8 @@ public class Drawer implements ActionListener,MouseListener {
     JPanel waterMap;
 
     JPanel allinMap;
+
+    JPanel temperatureMap;
 
     Map map;
 
@@ -94,20 +98,31 @@ public class Drawer implements ActionListener,MouseListener {
         button.setSize(10, 10);
         allinMap.add(button);
         allinMap.addMouseListener(this);
+
         heightMap =new JPanel();
         tabbedPane.addTab("Height Map",  heightMap );
-        button = new JButton("Regenerate Water");
+        button = new JButton("Regenerate");
         button.addActionListener(this);
         button.setSize(10, 10);
         heightMap.add(button);
         heightMap.addMouseListener(this);
+
         waterMap =new JPanel();
         tabbedPane.addTab("Water Map",  waterMap );
-        button = new JButton("Regenerate Water");
+        button = new JButton("Regenerate");
         button.addActionListener(this);
         button.setSize(10, 10);
         waterMap.add(button);
         waterMap.addMouseListener(this);
+
+        temperatureMap =new JPanel();
+        tabbedPane.addTab("Temperature Map",  temperatureMap );
+        button = new JButton("Regenerate");
+        button.addActionListener(this);
+        button.setSize(10, 10);
+        temperatureMap.add(button);
+        temperatureMap.addMouseListener(this);
+
         frame.add(tabbedPane);
         frame.setSize(Math.round((size+10)*w),Math.round((size+15)*h*3/4));
         frame.setVisible(true);
@@ -127,7 +142,13 @@ public class Drawer implements ActionListener,MouseListener {
                         case 2:
                             save(MapType.WATER);
                             break;
+                        case 3:
+                            save(MapType.TEMPERATURE);
+                            break;
                     }
+                }
+                if(e.getKeyCode()==116){
+                    draw();
                 }
             }
             public void keyReleased(KeyEvent e) {  }
@@ -152,7 +173,22 @@ public class Drawer implements ActionListener,MouseListener {
             ig2.translate(w*1,h*1);
             drawMap(ig2,type);
 
-            File outputfile = new File("saved.png");
+            String name ="saved.png";
+            switch (type){
+                case TEMPERATURE:
+                    name ="temperature.png";
+                    break;
+                case ALL_IN:
+                    name ="allin.png";
+                    break;
+                case HEIGHT_MAP:
+                    name ="height.png";
+                    break;
+                case WATER:
+                    name ="water.png";
+                    break;
+            }
+            File outputfile = new File(name);
             ImageIO.write(image, "png", outputfile);
         } catch (IOException e) {
             e.printStackTrace();
@@ -276,6 +312,38 @@ public class Drawer implements ActionListener,MouseListener {
                         ig2.setPaint(color);
                     }
                     break;
+                    case TEMPERATURE: {
+                        Color color;
+                        PointTemperatureType  pointTemperatureType = point.getTemperatureType();
+                        switch (pointTemperatureType) {
+                            case ARCTIC:
+                                color = new Color(244, 248, 255);
+                                break;
+                            case SUB_ARCTIC:
+                                color = new Color(106, 246, 245);
+                                break;
+                            case COLD:
+                                color = new Color(62, 110, 198);
+                                break;
+                            case NORMAL:
+                                color = new Color(77, 152, 84);
+                                break;
+                            case SUB_TROPICAL:
+                                color = new Color(136, 152, 7);
+                                break;
+                            case TROPICAL:
+                                color = new Color(152, 102, 16);
+                                break;
+                            case DESERT:
+                                color = new Color(152, 24, 20);
+                                break;
+                            default:
+                                color = Color.BLACK;
+                                break;
+                        }
+                        ig2.setPaint(color);
+                    }
+                    break;
                 }
 
                    /* if(height>100) {
@@ -332,6 +400,8 @@ public class Drawer implements ActionListener,MouseListener {
         }
     }
     void draw(){
+
+
         switch (tabbedPane.getSelectedIndex()){
             case 0:
                 drawMap(heightMap,MapType.ALL_IN);
@@ -341,6 +411,9 @@ public class Drawer implements ActionListener,MouseListener {
                 break;
             case 2:
                 drawMap(waterMap,MapType.WATER);
+                break;
+            case 3:
+                drawMap(temperatureMap,MapType.TEMPERATURE);
                 break;
         }
     }
@@ -413,6 +486,8 @@ public class Drawer implements ActionListener,MouseListener {
         panel.add(new Label("X:" + point.getX()+" Y:"+point.getY()+" height:"+point.getHeight()));
         panel.add(new Label("Height type " +point.getHeightType()));
         panel.add(new Label("Land type "+point.getLandType()));
+        panel.add(new Label("Temperature type "+point.getTemperatureType()));
+        panel.add(new Label("Temperature "+point.getTemperature()));
         frame.setSize(200,400);
         frame.add(panel);
         frame.setVisible(true);

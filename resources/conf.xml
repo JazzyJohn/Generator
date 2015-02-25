@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
     <seed>
-        <seed>777777777</seed>
-        <repeat>true</repeat>
+        <seed>0</seed>
+        <repeat>false</repeat>
     </seed>
     <main>
         <size>65</size>
@@ -40,4 +40,16 @@
         <riverDistance>2</riverDistance>
         <lakeDepth>40</lakeDepth>
     </river>
+    <temperature>
+        <temp0>-30f</temp0>
+        <temp1>-15f</temp1>
+        <temp2>0f</temp2>
+        <temp3>15f</temp3>
+        <temp4>30f</temp4>
+        <temp5>45f</temp5>
+        <temp6>55f</temp6>
+        <degreePerHeight>-0.3f</degreePerHeight>3
+        <degreePerLatitude>-3f</degreePerLatitude>
+        <startTemperature>55.0f</startTemperature>
+    </temperature>
 </settings>

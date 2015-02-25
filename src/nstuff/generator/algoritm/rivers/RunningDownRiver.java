@@ -64,6 +64,9 @@ public class RunningDownRiver implements RiverGenerator {
             logger.debug("Generating  ¹"+ i+"  river ");
             int index = rand.nextInt(riverPossiblePoint.size());
             MapPoint start =  riverPossiblePoint.remove(index);
+            if(start.isWater()){
+               continue;
+            }
             River river = new River(start);
             Lake lake = generateRiver(river,map);
             river.closeRiver();
@@ -132,8 +135,9 @@ public class RunningDownRiver implements RiverGenerator {
 
             }
         }
-
+        logger.debug("Resolving  Lake");
         List<MapPoint> resolved= new ArrayList<MapPoint>();
+        List<Node> lakeNodes = new ArrayList<Node>();
         LinkedList<MapPoint> lakePossible= new LinkedList<MapPoint>();
         MapPoint currentPoint = map.getPoint(current.getX(),current.getY());
         MapPoint startPoint= currentPoint;
@@ -162,11 +166,28 @@ public class RunningDownRiver implements RiverGenerator {
                     lakePossible.add(neighborMapPoint);
 
                 }
-
+                lakeNodes.add(Node.getInstance(currentPoint));
                 lake.add(currentPoint);
             }
             currentPoint= lakePossible.pollFirst();
         }
+
+        logger.debug("Resolving  river path");
+        LinkedList<Node> path = new LinkedList<Node>();
+
+        while(current!=null){
+            path.add(current);
+            current = current.getParent();
+        }
+        logger.debug("Writing into river");
+        current = path.pollLast();
+        while(current!=null){
+            if(!lakeNodes.contains(current)){
+                river.add(map.getPoint(current.getX(),current.getY()));
+            }
+            current = path.pollLast();
+        }
+
         return lake;
     }
 }

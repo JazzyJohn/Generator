@@ -4,6 +4,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 import nstuff.generator.Generator;
 import nstuff.generator.geography.PointHeightType;
 import nstuff.generator.geography.PointLandType;
+import nstuff.generator.geography.PointTemperatureType;
 
 import static nstuff.generator.Generator.GENERATE_PHASE;
 
@@ -19,6 +20,8 @@ public class MapPoint {
 
     private int height=-1;
 
+    private float temperature;
+
     private GENERATE_PHASE stage =GENERATE_PHASE.START;
 
     private Map map;
@@ -26,6 +29,12 @@ public class MapPoint {
     private PointLandType landType=PointLandType.OCEAN;
 
     private PointHeightType heightType= PointHeightType.OCEAN;
+
+    private PointTemperatureType temperatureType = PointTemperatureType.NORMAL;
+
+    public River river;
+
+    public Lake lake;
 
     public MapPoint(int x, int y,Map map) {
         this.x = x;
@@ -48,10 +57,6 @@ public class MapPoint {
     public int getHeight() {
         return height;
     }
-
-    public River river;
-
-    public Lake lake;
 
     public void setHeight(int height) {
         if(landType==PointLandType.OCEAN&&map.getSeaLevel()<height){
@@ -98,6 +103,22 @@ public class MapPoint {
         if(height>=map.getSeaLevel()&&stage !=GENERATE_PHASE.RIVER){
             landType = PointLandType.LAND;
         }
+    }
+
+    public PointTemperatureType getTemperatureType() {
+        return temperatureType;
+    }
+
+    public void setTemperatureType(PointTemperatureType temperatureType) {
+        this.temperatureType = temperatureType;
+    }
+
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
     }
 
     @Override

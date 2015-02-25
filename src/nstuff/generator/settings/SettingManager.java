@@ -30,6 +30,8 @@ public class SettingManager {
 
     private static final String RIVER_SECTION = "river";
 
+    private static final String TEMPERATURE_SECTION = "temperature";
+
     Document doc;
 
     public void init() throws SettingException{
@@ -91,6 +93,13 @@ public class SettingManager {
             return defaultValue;
         }
         return getSection(param,defaultValue,className,RIVER_SECTION);
+
+    }
+    public  <T> T getTemperatureSetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
+        }
+        return getSection(param,defaultValue,className,TEMPERATURE_SECTION);
 
     }
     public <T> T getSection(String param,T defaultValue,Class className,String sectionName) {
