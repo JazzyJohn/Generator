@@ -52,4 +52,10 @@
         <degreePerLatitude>-3f</degreePerLatitude>
         <startTemperature>55.0f</startTemperature>
     </temperature>
+    <humidity>
+        <waterdist0>0</waterdist0>
+        <waterdist1>2</waterdist1>
+        <waterdist2>4</waterdist2>
+        <waterdist3>4</waterdist3>
+    </humidity>
 </settings>

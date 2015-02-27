@@ -5,11 +5,12 @@ import nstuff.generator.geography.PointLandType;
 import nstuff.generator.logic.LogicFinder;
 
 /**
- * Created by Ivan.Ochincenko on 27.02.15.
+ * Created by Ivan.Ochincenko on 24.02.15.
  */
-public class WaterFinder implements LogicFinder {
+public class OceanFinder implements LogicFinder{
     @Override
     public boolean find(MapPoint point) {
-        return !(point.getLandType()== PointLandType.LAND);
+        return point.getLandType()== PointLandType.OCEAN;
+
     }
 }

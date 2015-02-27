@@ -6,6 +6,7 @@ import nstuff.generator.GeneratorModule;
 import nstuff.generator.entity.Map;
 import nstuff.generator.entity.MapPoint;
 import nstuff.generator.geography.PointHeightType;
+import nstuff.generator.geography.PointHumidityType;
 import nstuff.generator.geography.PointLandType;
 import nstuff.generator.geography.PointTemperatureType;
 import nstuff.generator.settings.SettingManager;
@@ -34,7 +35,8 @@ public class Drawer implements ActionListener,MouseListener {
         HEIGHT_MAP,
         ALL_IN,
         WATER,
-        TEMPERATURE;
+        TEMPERATURE,
+        HUMIDITY;
     }
 
     static Logger logger = LogManager.getLogger(Drawer.class);
@@ -61,6 +63,7 @@ public class Drawer implements ActionListener,MouseListener {
 
     JPanel temperatureMap;
 
+    JPanel humidityMap;
     Map map;
 
     public static final int W_OFFSET= 1;
@@ -123,6 +126,15 @@ public class Drawer implements ActionListener,MouseListener {
         temperatureMap.add(button);
         temperatureMap.addMouseListener(this);
 
+        humidityMap =new JPanel();
+        tabbedPane.addTab("Humidity Map",  humidityMap );
+        button = new JButton("Regenerate");
+        button.addActionListener(this);
+        button.setSize(10, 10);
+        humidityMap.add(button);
+        humidityMap.addMouseListener(this);
+
+
         frame.add(tabbedPane);
         frame.setSize(Math.round((size+10)*w),Math.round((size+15)*h*3/4));
         frame.setVisible(true);
@@ -144,6 +156,9 @@ public class Drawer implements ActionListener,MouseListener {
                             break;
                         case 3:
                             save(MapType.TEMPERATURE);
+                            break;case 4:
+
+                            save(MapType.HUMIDITY);
                             break;
                     }
                 }
@@ -186,6 +201,9 @@ public class Drawer implements ActionListener,MouseListener {
                     break;
                 case WATER:
                     name ="water.png";
+                    break;
+                case HUMIDITY:
+                    name ="humidity.png";
                     break;
             }
             File outputfile = new File(name);
@@ -317,25 +335,48 @@ public class Drawer implements ActionListener,MouseListener {
                         PointTemperatureType  pointTemperatureType = point.getTemperatureType();
                         switch (pointTemperatureType) {
                             case ARCTIC:
-                                color = new Color(244, 248, 255);
+                                color = new Color(114, 126, 140);
                                 break;
                             case SUB_ARCTIC:
-                                color = new Color(106, 246, 245);
+                                color = new Color(128, 173, 214);
                                 break;
-                            case COLD:
-                                color = new Color(62, 110, 198);
-                                break;
-                            case NORMAL:
-                                color = new Color(77, 152, 84);
+                            case MILD:
+                                color = new Color(122, 204, 138);
                                 break;
                             case SUB_TROPICAL:
-                                color = new Color(136, 152, 7);
+                                color = new Color(131, 255, 159);
                                 break;
                             case TROPICAL:
-                                color = new Color(152, 102, 16);
+                                color = new Color(136, 152, 7);
                                 break;
+                            case SUBEQUATRIAL:
+                                color = new Color(237, 184, 116);
+                                break;
+                            case EQUATARIAL:
+                                color = new Color(207, 115, 118);
+                                break;
+                            default:
+                                color = Color.BLACK;
+                                break;
+                        }
+                        ig2.setPaint(color);
+                    }
+                    break;
+                    case HUMIDITY: {
+                        Color color;
+                        PointHumidityType pointHumidityType = point.getHumidityType();
+                        switch (pointHumidityType) {
                             case DESERT:
-                                color = new Color(152, 24, 20);
+                                color = new Color(199, 198, 23);
+                                break;
+                            case NORMAL:
+                                color = new Color(65, 214, 40);
+                                break;
+                            case WET:
+                                color = new Color(109, 253, 255);
+                                break;
+                            case WATER:
+                                color = new Color(0, 24, 204);
                                 break;
                             default:
                                 color = Color.BLACK;
@@ -414,6 +455,9 @@ public class Drawer implements ActionListener,MouseListener {
                 break;
             case 3:
                 drawMap(temperatureMap,MapType.TEMPERATURE);
+                break;
+            case 4:
+                drawMap(humidityMap,MapType.HUMIDITY);
                 break;
         }
     }

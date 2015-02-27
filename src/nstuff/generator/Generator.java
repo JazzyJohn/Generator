@@ -3,6 +3,7 @@ package nstuff.generator;
 import nstuff.generator.algoritm.grower.Grower;
 import nstuff.generator.algoritm.heightmap.HeightMapGenerator;
 import nstuff.generator.algoritm.heightmap.HeightNormalizer;
+import nstuff.generator.algoritm.humidity.HumidityCalculator;
 import nstuff.generator.algoritm.rivers.RiverGenerator;
 import nstuff.generator.algoritm.temperature.TemperatureCalculator;
 import nstuff.generator.entity.HexMap;
@@ -48,6 +49,9 @@ public class Generator {
     private TemperatureCalculator temperatureCalculator;
 
     @Inject
+    private HumidityCalculator humidityCalculator;
+
+    @Inject
     Random rand;
 
     int seed;
@@ -84,6 +88,8 @@ public class Generator {
 
         temperatureCalculator.calculateForMap(map);
 
+        humidityCalculator.calculate(map);
+
         return  map;
     }
 
@@ -96,5 +102,6 @@ public class Generator {
         heightNormalizer.init();
         riverGenerator.init();
         temperatureCalculator.init();
+        humidityCalculator.init();
     }
 }

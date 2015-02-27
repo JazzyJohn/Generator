@@ -35,7 +35,7 @@ public class RunningDownRiver implements RiverGenerator {
     SettingManager settings;
 
     @Inject
-    @Named("WaterFinder")
+    @Named("OceanFinder")
     private LogicFinder waterFinder;
 
     @Inject

@@ -32,6 +32,8 @@ public class SettingManager {
 
     private static final String TEMPERATURE_SECTION = "temperature";
 
+    private static final String HUMIDITY_SECTION = "humidity";
+
     Document doc;
 
     public void init() throws SettingException{
@@ -100,6 +102,13 @@ public class SettingManager {
             return defaultValue;
         }
         return getSection(param,defaultValue,className,TEMPERATURE_SECTION);
+
+    }
+    public  <T> T getHumiditySetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
+        }
+        return getSection(param,defaultValue,className,HUMIDITY_SECTION);
 
     }
     public <T> T getSection(String param,T defaultValue,Class className,String sectionName) {

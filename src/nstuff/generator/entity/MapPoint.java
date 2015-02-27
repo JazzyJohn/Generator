@@ -1,8 +1,7 @@
 package nstuff.generator.entity;
 
-import com.sun.org.apache.regexp.internal.recompile;
-import nstuff.generator.Generator;
 import nstuff.generator.geography.PointHeightType;
+import nstuff.generator.geography.PointHumidityType;
 import nstuff.generator.geography.PointLandType;
 import nstuff.generator.geography.PointTemperatureType;
 
@@ -30,7 +29,9 @@ public class MapPoint {
 
     private PointHeightType heightType= PointHeightType.OCEAN;
 
-    private PointTemperatureType temperatureType = PointTemperatureType.NORMAL;
+    private PointTemperatureType temperatureType = PointTemperatureType.SUB_TROPICAL;
+
+    private PointHumidityType humidityType= PointHumidityType.WATER;
 
     public River river;
 
@@ -119,6 +120,14 @@ public class MapPoint {
 
     public void setTemperature(float temperature) {
         this.temperature = temperature;
+    }
+
+    public PointHumidityType getHumidityType() {
+        return humidityType;
+    }
+
+    public void setHumidityType(PointHumidityType humidityType) {
+        this.humidityType = humidityType;
     }
 
     @Override

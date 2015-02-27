@@ -6,11 +6,11 @@ package nstuff.generator.geography;
 public enum PointTemperatureType {
     ARCTIC,
     SUB_ARCTIC,
-    COLD,
-    NORMAL,
+    MILD,
     SUB_TROPICAL,
     TROPICAL,
-    DESERT
+    SUBEQUATRIAL,
+    EQUATARIAL
 
 
 }

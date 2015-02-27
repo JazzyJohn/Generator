@@ -80,7 +80,7 @@ public class HexMap implements Map {
         for(int i= startX-radius;i<=startX+radius;i++){
             for(int j=startY-radius;j<=startY+radius;j++){
                 if(i>=-height/2&&i<width&&j>=0&&j<height) {
-                    int distance =distance(startX,startY,i,j);
+                    int distance =_distance(startX,startY,i,j);
                     if(distance <=radius){
                         if(valid&&( (i+j/2)<0||(i+j/2)>=width)){
                             continue;
@@ -94,13 +94,42 @@ public class HexMap implements Map {
 
         return points;
     }
+
+    @Override
+    public MapPoint getClosestInRange(int startX, int startY, int radius,LogicFinder finder) {
+        startX-=startY/2;
+        MapPoint find= null;
+        int minRadius = radius+1;
+        for(int i= startX-radius;i<=startX+radius;i++){
+            for(int j=startY-radius;j<=startY+radius;j++){
+                if(i>=-height/2&&i<width&&j>=0&&j<height) {
+                    int distance =_distance(startX,startY,i,j);
+                    if(distance <=radius){
+                        if(finder.find(getRawPoint(i, j))){
+                            if(distance<minRadius){
+
+                                if(( (i+j/2)<0||(i+j/2)>=width)){
+                                    continue;
+                                }
+                                minRadius= distance;
+                                find = getRawPoint(i, j);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+        return find;
+    }
+
     @Override
     public boolean isInRadius(int startX, int startY, int radius,LogicFinder finder){
         startX-=startY/2;
         for(int i= startX-radius;i<=startX+radius;i++){
             for(int j=startY-radius;j<=startY+radius;j++){
                 if(i>=-height/2&&i<width&&j>=0&&j<height) {
-                    int distance =distance(startX,startY,i,j);
+                    int distance =_distance(startX,startY,i,j);
                     if(distance <=radius){
                         if(finder.find(getRawPoint(i, j))){
                             return true;
@@ -127,12 +156,24 @@ public class HexMap implements Map {
             return (abs(a.q - b.q)
     + abs(a.q + a.r - b.q - b.r)
     + abs(a.r - b.r)) / 2*/
-    @Override
-    public int distance(int startX, int startY, int x, int y) {
+    private int _distance(int startX, int startY, int x, int y) {
 
         return (Math.abs(startX-x) +Math.abs(startX + startY-y-x) + Math.abs(startY-y))/2;
     }
 
+
+
+    @Override
+    public int distance(int startX, int startY, int x, int y) {
+        startX-=startY/2;
+        x-=y/2;
+        return _distance(startX,startY,x,y);
+    }
+
+    public int distance(MapPoint start, MapPoint end) {
+
+        return distance(start.getX(),start.getY(),end.getX(), end.getY());
+    }
     @Override
     public void addRiver(River river) {
         rivers.add(river);
