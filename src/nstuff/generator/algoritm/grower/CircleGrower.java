@@ -26,10 +26,16 @@ public class CircleGrower implements  Grower{
 
     @Override
     public void grow(Map map, LogicChanger changer) {
+        logger.debug("Circle Grower At Work");
         List<MapPoint> points = map.getRadius(startX,startY,size);
         for(MapPoint point : points){
             changer.changePoint(point);
         }
 
+    }
+
+    @Override
+    public void setUp(int size, MapPoint center) {
+        setUp(size,center.getX(),center.getY());
     }
 }

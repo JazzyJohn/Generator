@@ -47,7 +47,7 @@ public class ProtoBiomeBlueprint {
                 allowedHumidityTypes.contains(mapPoint.getHumidityType())&&
                 allowedTemperatureTypes.contains(mapPoint.getTemperatureType());
     }
-    public Biome generateBiome(MapPoint center){
-        return new Biome(protoBiome,center);
+    public Biome generateBiome(){
+        return new Biome(protoBiome);
     }
 }

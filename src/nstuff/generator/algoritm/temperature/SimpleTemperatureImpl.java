@@ -4,6 +4,8 @@ import nstuff.generator.entity.Map;
 import nstuff.generator.entity.MapPoint;
 import nstuff.generator.geography.PointTemperatureType;
 import nstuff.generator.settings.SettingManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -13,6 +15,9 @@ import java.util.List;
  * Created by Ivan.Ochincenko on 25.02.15.
  */
 public class SimpleTemperatureImpl implements TemperatureCalculator {
+
+    static Logger logger = LogManager.getLogger(SimpleTemperatureImpl.class);
+
 
     @Inject
     SettingManager settings;
@@ -45,6 +50,7 @@ public class SimpleTemperatureImpl implements TemperatureCalculator {
     }
     @Override
     public void calculateForMap(Map map) {
+        logger.debug("Generating Step: Calculating Temperature");
         equator =map.getHeight()/2;
         for(int i=0;i<map.getHeight();i++){
             for(int j= 0;j<map.getWidth();j++){

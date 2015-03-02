@@ -223,7 +223,21 @@ public class Drawer implements ActionListener,MouseListener {
         for(int i=0; i<map.getWidth();i++){
             for(int j=0;j<map.getHeight();j++){
                 MapPoint point = map.getPoint(i, j);
+                float x,y;
+                  /*  x = (point.getDrawX()+0.5f)*w;
+                    y = (point.getDrawY()+1)*h;*/
+                if(j%2==0){
+                    //   ig2.setPaint(Color.white);
+                    x= (i+1)*w;
+                    y =((float)j)*h*3/4;
 
+
+                }else{
+                    // ig2.setPaint(Color.yellow);
+                    x= (i+1)*w+w/2;
+                    y = ((float)j)*h*3/4;
+
+                }
                 switch(type){
                     case ALL_IN: {
                         PointHeightType height = point.getHeightType();
@@ -270,6 +284,7 @@ public class Drawer implements ActionListener,MouseListener {
                         }
 
                         ig2.setPaint(color);
+
                     }
                     break;
                     case HEIGHT_MAP: {
@@ -407,21 +422,7 @@ public class Drawer implements ActionListener,MouseListener {
                         }
                     }*/
 
-                float x,y;
-                  /*  x = (point.getDrawX()+0.5f)*w;
-                    y = (point.getDrawY()+1)*h;*/
-                if(j%2==0){
-                    //   ig2.setPaint(Color.white);
-                    x= (i+1)*w;
-                    y =((float)j)*h*3/4;
 
-
-                }else{
-                    // ig2.setPaint(Color.yellow);
-                    x= (i+1)*w+w/2;
-                    y = ((float)j)*h*3/4;
-
-                }
                 if(i==markQ&&j==markR){
                     ig2.setPaint(Color.red);
                 }
@@ -435,6 +436,19 @@ public class Drawer implements ActionListener,MouseListener {
                 if(needFont) {
                     ig2.setPaint(Color.white);
                     ig2.drawString(point.getX() + "," + point.getY(), x, y);
+                }else{
+                   if(type==MapType.ALL_IN) {
+                       if (point.getBiome() != null) {
+                           ig2.setPaint(new Color(237, 0, 255));
+                           ig2.drawString(point.getBiome().toString(), x, y);
+
+                       } else {
+                           ig2.setPaint(new Color(237, 0, 255));
+                           ig2.drawString("N", x, y);
+
+                       }
+
+                   }
                 }
             }
             // break;

@@ -50,6 +50,8 @@ public class RunningDownRiver implements RiverGenerator {
 
     @Override
     public void generate(Map map) {
+        logger.debug("Generating Step: Generating Rivers");
+
         List<MapPoint> riverPossiblePoint = new ArrayList<MapPoint>();
         for(int i =0;i<map.getWidth();i++){
             for(int j=0;j<map.getHeight();j++ ){
@@ -61,7 +63,7 @@ public class RunningDownRiver implements RiverGenerator {
         logger.debug("Find "+ riverPossiblePoint.size()+" possible river point");
         logger.debug("Generating  "+ riverCnt+"  rivers ");
         for(int i =0;i<riverCnt;i++){
-            logger.debug("Generating  ¹"+ i+"  river ");
+            logger.debug("Generating  "+ i+"  river ");
             int index = rand.nextInt(riverPossiblePoint.size());
             MapPoint start =  riverPossiblePoint.remove(index);
             if(start.isWater()){

@@ -16,5 +16,6 @@ public class SimpleGrowerBiomeTest {
         SimpleGrowerBiome biom = new SimpleGrowerBiome();
         biom.init();
         assertThat(biom.allBiomes.size(),equalTo(2));
+        assertThat(biom.maxBiomeSize,equalTo(8));
     }
 }

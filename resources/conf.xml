@@ -6,9 +6,9 @@
     </seed>
     <main>
         <size>65</size>
-        <drawSize>12</drawSize>
+        <drawSize>24</drawSize>
         <fontNeed>false</fontNeed>
-        <font>10</font>
+        <font>12</font>
     </main>
     <island>
         <count>15</count>
@@ -48,7 +48,7 @@
         <temp4>30f</temp4>
         <temp5>45f</temp5>
         <temp6>55f</temp6>
-        <degreePerHeight>-0.3f</degreePerHeight>3
+        <degreePerHeight>-0.3f</degreePerHeight>
         <degreePerLatitude>-3f</degreePerLatitude>
         <startTemperature>55.0f</startTemperature>
     </temperature>
@@ -58,4 +58,7 @@
         <waterdist2>4</waterdist2>
         <waterdist3>4</waterdist3>
     </humidity>
+    <biomes>
+        <maxBiomeSize>8</maxBiomeSize>
+    </biomes>
 </settings>

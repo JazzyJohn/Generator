@@ -7,6 +7,8 @@ import nstuff.generator.geography.PointLandType;
 import nstuff.generator.geography.PointTemperatureType;
 import nstuff.generator.logic.LogicFinder;
 import nstuff.generator.settings.SettingManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,6 +19,8 @@ import java.util.List;
  * Created by Ivan.Ochincenko on 27.02.15.
  */
 public class SimpleHumidityCalculator implements HumidityCalculator  {
+    static Logger logger = LogManager.getLogger(SimpleHumidityCalculator.class);
+
     @Inject
     SettingManager settings;
 
@@ -39,6 +43,7 @@ public class SimpleHumidityCalculator implements HumidityCalculator  {
 
     @Override
     public void calculate(Map map) {
+        logger.debug("Generating Step: Calculating Humidity");
         int maxDistance = humidDictionary.get(humidDictionary.size()-1);
         for(int i=0;i<map.getHeight();i++){
             for(int j= 0;j<map.getWidth();j++){

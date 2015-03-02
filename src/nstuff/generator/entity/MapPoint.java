@@ -1,5 +1,6 @@
 package nstuff.generator.entity;
 
+import nstuff.generator.entity.biom.Biome;
 import nstuff.generator.geography.PointHeightType;
 import nstuff.generator.geography.PointHumidityType;
 import nstuff.generator.geography.PointLandType;
@@ -33,9 +34,11 @@ public class MapPoint {
 
     private PointHumidityType humidityType= PointHumidityType.WATER;
 
-    public River river;
+    private River river;
 
-    public Lake lake;
+    private Lake lake;
+
+    private Biome biome;
 
     public MapPoint(int x, int y,Map map) {
         this.x = x;
@@ -145,5 +148,13 @@ public class MapPoint {
     public void makeLake(Lake lake) {
         landType = PointLandType.LAKE;
         this.lake = lake;
+    }
+
+    public void setBiome(Biome biome) {
+        this.biome = biome;
+    }
+
+    public Biome getBiome() {
+        return biome;
     }
 }

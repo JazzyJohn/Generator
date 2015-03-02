@@ -48,6 +48,7 @@ public class DiamondSquareDisplacement implements HeightMapGenerator {
     @Override
     public void generate(Map map) throws HeightMapException {
         this.map = map;
+        logger.debug("Generating Step: Generating Height Map");
         minH = settings.getHeightMapSetting("minH", 0, Integer.class);
         start = settings.getHeightMapSetting("start", 0, Integer.class);
         sectionSize = settings.getHeightMapSetting("sectionSize", 33, Integer.class);

@@ -20,8 +20,9 @@ public class LandMaker implements LogicChanger {
     }
 
     @Override
-    public void changePoint(MapPoint point) {
+    public boolean changePoint(MapPoint point) {
         point.makeLand();
         point.setHeight(landLvl);
+        return true;
     }
 }

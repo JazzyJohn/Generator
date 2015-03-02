@@ -34,6 +34,8 @@ public class SettingManager {
 
     private static final String HUMIDITY_SECTION = "humidity";
 
+    private static final String BIOMES_SECTION = "biomes";
+
     Document doc;
 
     public void init() throws SettingException{
@@ -109,6 +111,13 @@ public class SettingManager {
             return defaultValue;
         }
         return getSection(param,defaultValue,className,HUMIDITY_SECTION);
+
+    }
+    public  <T> T getBiomesSetting(String param,T defaultValue,Class className) {
+        if (doc == null) {
+            return defaultValue;
+        }
+        return getSection(param,defaultValue,className, BIOMES_SECTION);
 
     }
     public <T> T getSection(String param,T defaultValue,Class className,String sectionName) {

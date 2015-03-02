@@ -9,5 +9,5 @@ public interface LogicChanger {
 
     public void init();
 
-    public void changePoint(MapPoint point);
+    public boolean changePoint(MapPoint point);
 }

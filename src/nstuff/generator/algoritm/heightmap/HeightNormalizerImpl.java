@@ -4,6 +4,8 @@ import nstuff.generator.entity.Map;
 import nstuff.generator.entity.MapPoint;
 import nstuff.generator.geography.PointHeightType;
 import nstuff.generator.settings.SettingManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.List;
  * Created by vania_000 on 23.02.2015.
  */
 public class HeightNormalizerImpl implements HeightNormalizer {
+    static Logger logger = LogManager.getLogger(HeightNormalizerImpl.class);
+
 
     @Inject
     SettingManager settings;
@@ -42,6 +46,7 @@ public class HeightNormalizerImpl implements HeightNormalizer {
 
     @Override
     public void normalize(Map map) {
+        logger.debug("Generating Step: Normalazing Height Map");
 
         for(int i = 0;i<map.getWidth();i++){
             for(int j =0;j<map.getHeight();j++){

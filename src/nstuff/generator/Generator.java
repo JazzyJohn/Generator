@@ -9,7 +9,10 @@ import nstuff.generator.algoritm.temperature.TemperatureCalculator;
 import nstuff.generator.entity.HexMap;
 import nstuff.generator.entity.Map;
 import nstuff.generator.logic.LogicChanger;
+import nstuff.generator.logic.generators.ProtoBiomeGenerator;
 import nstuff.generator.settings.SettingManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,6 +28,9 @@ public class Generator {
         HEIGHT,
         RIVER;
     }
+
+    static Logger logger = LogManager.getLogger(Generator.class);
+
     @Inject
     private HeightMapGenerator heightMapGenerator;
 
@@ -36,6 +42,9 @@ public class Generator {
 
     @Inject
     private SettingManager settingManager;
+
+    @Inject
+    private ProtoBiomeGenerator protoBiomeGenerator;
 
     @Inject
     @Named("IslandGrower")
@@ -70,11 +79,15 @@ public class Generator {
         int count = settingManager.getIslandSetting("count",5,Integer.class);
         int minSize = settingManager.getIslandSetting("minsize",5,Integer.class);
         int maxSize = settingManager.getIslandSetting("maxsize",5,Integer.class);
+        logger.debug("Generating Step: Generating Island and Continent");
+
         for(int i=0;i<count;i++){
+
             int size= rand.nextInt(maxSize-minSize)+minSize;
             int islandX =  rand.nextInt(x);
 
             int islandY  =  rand.nextInt(y);
+            logger.debug("Generating Land "+i +" size "+size);
 
             islandGrower.setUp(size,islandX,islandY);
             islandGrower.grow(map,islandMaker);
@@ -90,6 +103,8 @@ public class Generator {
 
         humidityCalculator.calculate(map);
 
+        protoBiomeGenerator.generate(map);
+
         return  map;
     }
 
@@ -103,5 +118,6 @@ public class Generator {
         riverGenerator.init();
         temperatureCalculator.init();
         humidityCalculator.init();
+        protoBiomeGenerator.init();
     }
 }

@@ -12,17 +12,21 @@ import java.util.List;
  */
 public class Biome  extends AbstractRegion {
 
-    public ProtoBiome protoBiome;
+    private ProtoBiome protoBiome;
 
-    public List<Modification> modifications = new ArrayList<Modification>();
+    private List<Modification> modifications = new ArrayList<Modification>();
 
-    public Biome(ProtoBiome protoBiome, MapPoint center){
+    public Biome(ProtoBiome protoBiome){
         this.protoBiome = protoBiome;
-        points.add(center);
+
     }
 
     public void add(Modification mod){
         modifications.add(mod);
     }
 
+    @Override
+    public String toString() {
+        return protoBiome.toString();
+    }
 }
