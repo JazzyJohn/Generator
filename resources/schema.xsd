@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+            jxb:version="2.0">
+
+    <xsd:simpleType name="ProtoBiome">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="GLACIER"/>
+            <xsd:enumeration value="OCEAN"/>
+            <xsd:enumeration value="SHOAL"/>
+            <xsd:enumeration value="LAKE"/>
+            <xsd:enumeration value="SAND_DESERT"/>
+            <xsd:enumeration value="STONE_DESERT"/>
+            <xsd:enumeration value="MEADOWS"/>
+            <xsd:enumeration value="SAVANNA"/>
+            <xsd:enumeration value="SWAMP"/>
+            <xsd:enumeration value="STEPPE"/>
+            <xsd:enumeration value="TUNDRA"/>
+            <xsd:enumeration value="FOREST"/>
+            <xsd:enumeration value="MOUNTAIN"/>
+            <xsd:enumeration value="MOUNTAIN_TOP"/>
+            <xsd:enumeration value="BADLANDS"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="PointHeightType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OCEAN"/>
+            <xsd:enumeration value="SEA"/>
+            <xsd:enumeration value="SEA_SHORE"/>
+            <xsd:enumeration value="LAND_SHORE"/>
+            <xsd:enumeration value="PLAIN"/>
+            <xsd:enumeration value="HILL"/>
+            <xsd:enumeration value="MOUNTAIN"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="PointHumidityType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WATER"/>
+            <xsd:enumeration value="WET"/>
+            <xsd:enumeration value="NORMAL"/>
+            <xsd:enumeration value="DESERT"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="PointTemperatureType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ARCTIC"/>
+            <xsd:enumeration value="SUB_ARCTIC"/>
+            <xsd:enumeration value="MILD"/>
+            <xsd:enumeration value="SUB_TROPICAL"/>
+            <xsd:enumeration value="TROPICAL"/>
+            <xsd:enumeration value="SUBEQUATRIAL"/>
+            <xsd:enumeration value="EQUATARIAL"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="PolygonType">
+        <xsd:element name="Doc" type="ProtoBiome"/>
+        <xsd:sequence>
+            <xsd:element name="AllowedHeightTypes" type="PointHeightType"
+                         minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+            <xsd:element name="AllowedHumidityTypes" type="PointHumidityType"
+                         minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+            <xsd:element name="AllowedTemperatureTypes" type="PointTemperatureType"
+                         minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+
+
+
+    </xsd:complexType>
+
+</xsd:schema>

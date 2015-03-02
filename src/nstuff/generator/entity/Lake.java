@@ -6,9 +6,8 @@ import java.util.List;
 /**
  * Created by Ivan.Ochincenko on 24.02.15.
  */
-public class Lake {
+public class Lake extends  AbstractRegion{
 
-    private List<MapPoint> points  = new ArrayList<MapPoint>();
 
     private MapPoint center;
 
@@ -18,9 +17,6 @@ public class Lake {
         points.add(center);
     }
 
-    public void add(MapPoint point){
-        points.add(point);
-    }
 
     public void  closeLake(){
         for(MapPoint point : points){
