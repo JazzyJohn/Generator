@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProtoBiomeBlueprints>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>GLACIER</protoBiome>
+
+        <allowedHeightTypes>OCEAN</allowedHeightTypes>
+        <allowedHeightTypes>SHOAL</allowedHeightTypes>
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+        <allowedHeightTypes>MOUNTAIN</allowedHeightTypes>
+        <allowedHeightTypes>MOUNTAIN_PEAK</allowedHeightTypes>
+
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>ARCTIC</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>HIGH</allowedHumidityTypes>
+        <allowedHumidityTypes>VERY_HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>OCEAN</protoBiome>
+
+        <allowedHeightTypes>OCEAN</allowedHeightTypes>
+
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>VERY_HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>SHOAL</protoBiome>
+
+        <allowedHeightTypes>SHOAL</allowedHeightTypes>
+
+        <allowedTemperatureTypes>ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>VERY_HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>DESERT_SAND</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>VERY_LOW</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>DESERT_ROCK</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>VERY_LOW</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>GRASSLAND</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>SAVANNA</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>SWAMP</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+
+        <protoBiome>SHRUBLAND</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+
+
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>TUNDRA</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+
+        <allowedTemperatureTypes>ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>VERY_LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>FOREST_BROADLEAF</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+
+
+
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+        <allowedHumidityTypes>HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>FOREST_CONIFER</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+        <allowedHeightTypes>MOUNTAIN</allowedHeightTypes>
+
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+
+
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>MOUNTAIN</protoBiome>
+
+        <allowedHeightTypes>MOUNTAIN</allowedHeightTypes>
+
+        <allowedTemperatureTypes>ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>VERY_LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+        <allowedHumidityTypes>HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>MOUNTAIN_PEAK</protoBiome>
+
+        <allowedHeightTypes>MOUNTAIN_PEAK</allowedHeightTypes>
+
+        <allowedTemperatureTypes>ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>VERY_LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+        <allowedHumidityTypes>HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>BADLANDS</protoBiome>
+
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+
+        <allowedTemperatureTypes>SUB_ARCTIC</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TEMPERATE</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>LOW</allowedHumidityTypes>
+        <allowedHumidityTypes>VERY_LOW</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+    <ProtoBiomeBlueprint>
+        <protoBiome>JUNGLE</protoBiome>
+
+        <allowedHeightTypes>SEA_SHORE</allowedHeightTypes>
+        <allowedHeightTypes>LOWLAND</allowedHeightTypes>
+        <allowedHeightTypes>HILL</allowedHeightTypes>
+
+
+        <allowedTemperatureTypes>TROPICAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>SUB_EQUATORIAL</allowedTemperatureTypes>
+        <allowedTemperatureTypes>EQUATORIAL</allowedTemperatureTypes>
+
+        <allowedHumidityTypes>NORMAL</allowedHumidityTypes>
+        <allowedHumidityTypes>HIGH</allowedHumidityTypes>
+
+    </ProtoBiomeBlueprint>
+
+
+</ProtoBiomeBlueprints>
+
