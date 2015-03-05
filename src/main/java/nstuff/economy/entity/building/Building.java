@@ -1,7 +1,10 @@
 package nstuff.economy.entity.building;
 
 import nstuff.economy.entity.Ticker;
+import nstuff.economy.entity.resources.Recipe;
+import nstuff.economy.entity.resources.RecipeBlueprint;
 import nstuff.economy.entity.resources.Resource;
+import nstuff.economy.entity.resources.ResourceBlueprint;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,15 +16,18 @@ public class Building implements Ticker {
 
     public Building(BuildingBlueprint blueprint) {
         this.blueprint = blueprint;
+        for(RecipeBlueprint recipeBlueprint : blueprint.getRecipeBlueprints()){
+            recipes.add(new Recipe(recipeBlueprint));
+        }
     }
 
-
+    private List<Recipe> recipes;
 
     private BuildingBlueprint blueprint;
 
     private int workerAmount;
 
-    private int productivity;
+    private float productivity;
 
     private int state;
 
@@ -40,6 +46,20 @@ public class Building implements Ticker {
         return true;
     }
 
+    public void addResource(ResourceBlueprint resource, float amount) {
+        if(getInvSize()+amount>blueprint.getInventorySize()){
+            return;
+        }
+        for(Resource res :inventory){
+            if(res.addResource(resource,amount)){
+                return;
+            }
+        }
+
+        inventory.add(new Resource(resource,amount));
+
+    }
+
     public float getInvSize(){
         float size =0;
         for(Resource resource :inventory){
@@ -56,11 +76,11 @@ public class Building implements Ticker {
         this.state = state;
     }
 
-    public int getProductivity() {
+    public float getProductivity() {
         return productivity;
     }
 
-    public void setProductivity(int productivity) {
+    public void setProductivity(float productivity) {
         this.productivity = productivity;
     }
 
@@ -72,8 +92,17 @@ public class Building implements Ticker {
         this.workerAmount = workerAmount;
     }
 
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
     @Override
-    public void tick(int hour) {
+    public void tick(float hour) {
         
+    }
+
+
+    public void tryDoRecipe(Recipe recipe) {
+
     }
 }

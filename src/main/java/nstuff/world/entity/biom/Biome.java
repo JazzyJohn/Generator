@@ -32,4 +32,9 @@ public class Biome  extends AbstractRegion {
     public String toString() {
         return protoBiome.toString();
     }
+
+    public String getName() {
+        return protoBiome.getName();
+
+    }
 }

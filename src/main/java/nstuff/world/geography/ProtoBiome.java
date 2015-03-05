@@ -9,17 +9,30 @@ public enum ProtoBiome {
         public String toString() {
             return "G";
         }
+        @Override
+        public String getName() {
+            return "Glacier";
+        }
     },
     OCEAN{
         @Override
         public String toString() {
             return "O";
         }
+
+        @Override
+        public String getName() {
+            return "Ocean";
+        }
     },
     SHOAL{
         @Override
         public String toString() {
             return "S";
+        }
+        @Override
+        public String getName() {
+            return "Shoal";
         }
     },
   /*  LAKE{
@@ -33,11 +46,19 @@ public enum ProtoBiome {
         public String toString() {
             return "D";
         }
+        @Override
+        public String getName() {
+          return "Desert";
+        }
     },
     DESERT_ROCK{
         @Override
         public String toString() {
             return "DR";
+        }
+        @Override
+        public String getName() {
+            return "Rock Desert";
         }
     },
     GRASSLAND{
@@ -45,11 +66,19 @@ public enum ProtoBiome {
         public String toString() {
             return "GR";
         }
+        @Override
+        public String getName() {
+            return "Savanna";
+        }
     },
     SAVANNA{
         @Override
         public String toString() {
             return "SA";
+        }
+        @Override
+        public String getName() {
+            return "Savanna";
         }
     },
     SWAMP{
@@ -57,11 +86,20 @@ public enum ProtoBiome {
         public String toString() {
             return "SW";
         }
+        @Override
+        public String getName() {
+            return "Swamp";
+        }
     },
     SHRUBLAND{
         @Override
         public String toString() {
             return "SH";
+        }
+
+        @Override
+        public String getName() {
+            return "Shrubland";
         }
     },
     TUNDRA{
@@ -69,11 +107,19 @@ public enum ProtoBiome {
         public String toString() {
             return "T";
         }
+        @Override
+        public String getName() {
+            return "Tundra";
+        }
     },
     FOREST_BROADLEAF{
         @Override
         public String toString() {
             return "FB";
+        }
+        @Override
+        public String getName() {
+            return "Leaf Forest";
         }
     },
     FOREST_CONIFER{
@@ -81,11 +127,19 @@ public enum ProtoBiome {
         public String toString() {
             return "FC";
         }
+        @Override
+        public String getName() {
+            return "Conifer Forest";
+        }
     },
     MOUNTAIN{
         @Override
         public String toString() {
             return "M";
+        }
+        @Override
+        public String getName() {
+            return "Mountain";
         }
     },
     MOUNTAIN_PEAK{
@@ -93,11 +147,19 @@ public enum ProtoBiome {
         public String toString() {
             return "MP";
         }
+        @Override
+        public String getName() {
+            return "Mountain Peak";
+        }
     },
     BADLANDS{
         @Override
         public String toString() {
             return "B";
+        }
+        @Override
+        public String getName() {
+            return "Badlands";
         }
     },
     JUNGLE{
@@ -105,6 +167,15 @@ public enum ProtoBiome {
         public String toString() {
             return "J";
         }
+
+        @Override
+        public String getName() {
+            return "Jungle";
+        }
+    };
+
+    public String getName() {
+        return "";
     }
 
 

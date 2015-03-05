@@ -1,5 +1,6 @@
 package nstuff.economy.entity.building;
 
+import nstuff.economy.entity.resources.RecipeBlueprint;
 import nstuff.economy.entity.resources.ResourceWithAmount;
 import nstuff.economy.entity.resources.ResourceWithAmountBlueprint;
 
@@ -12,10 +13,13 @@ import java.util.List;
  * Created by vania_000 on 05.03.2015.
  */
 @XmlRootElement(name = "BuildingBlueprint")
-@XmlType(propOrder = {"buildingCategory","workerAmount","neededListBlueprint","inventorySize","productivity","state","size","characteristicList"})
+@XmlType(propOrder = {"name","buildingCategory","workerAmount","neededListBlueprint","inventorySize","productivity","state","size","characteristicList","recipeBlueprints"})
 public class BuildingBlueprint {
     public BuildingBlueprint() {
     }
+
+    @XmlElement
+    private String name;
 
     @XmlElement
     private BuildingCategory buildingCategory;
@@ -32,7 +36,7 @@ public class BuildingBlueprint {
     private int inventorySize;
 
     @XmlElement
-    private int productivity;
+    private float productivity;
 
     @XmlElement
     private int state;
@@ -42,6 +46,9 @@ public class BuildingBlueprint {
 
     @XmlElement
     private List<CharacteristicBlueprint> characteristicList;
+
+    @XmlElement
+    private List<RecipeBlueprint>  recipeBlueprints;
 
 
     public BuildingCategory getBuildingCategory() {
@@ -64,7 +71,7 @@ public class BuildingBlueprint {
         return inventorySize;
     }
 
-    public int getProductivity() {
+    public float getProductivity() {
         return productivity;
     }
 
@@ -83,5 +90,13 @@ public class BuildingBlueprint {
     public void setNeededList(List<ResourceWithAmount> neededList) {
         this.neededList = neededList;
         this.neededListBlueprint = null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<RecipeBlueprint> getRecipeBlueprints() {
+        return recipeBlueprints;
     }
 }

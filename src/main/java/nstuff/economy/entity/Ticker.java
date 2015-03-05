@@ -5,5 +5,5 @@ package nstuff.economy.entity;
  */
 public interface Ticker {
 
-    public void tick(int hour);
+    public void tick(float hour);
 }

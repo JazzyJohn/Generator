@@ -5,7 +5,7 @@ package nstuff.economy.entity.resources;
  */
 public class Resource {
 
-    public Resource(ResourceBlueprint blueprint, int amount) {
+    public Resource(ResourceBlueprint blueprint, float amount) {
         this.blueprint = blueprint;
         this.amount = amount;
         state = ExpirationState.FRESH;
@@ -39,5 +39,13 @@ public class Resource {
     public boolean spendResource(float amount){
         this.amount-=amount;
         return this.amount>0;
+    }
+
+    public boolean addResource(ResourceBlueprint resource, float amount) {
+        if(blueprint==resource&&state==ExpirationState.FRESH){
+            this.amount+= amount;
+            return true;
+        }
+        return false;
     }
 }
