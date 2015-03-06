@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourcesBlueprints>
+    <ResourceBlueprint>
+        <name>Wood</name>
+        <productivity>1</productivity>
+        <baseCost>1</baseCost>
+        <level>1</level>
+        <baseSize>1</baseSize>
+        <resourceCategory>PRODUCTION</resourceCategory>
+        <lifeTime>1000</lifeTime>
+    </ResourceBlueprint>
+    <ResourceBlueprint>
+        <name>BlackWood</name>
+        <productivity>0.5f</productivity>
+        <baseCost>2</baseCost>
+        <level>1</level>
+        <baseSize>2</baseSize>
+        <resourceCategory>PRODUCTION</resourceCategory>
+        <lifeTime>1000</lifeTime>
+    </ResourceBlueprint>
+    <ResourceBlueprint>
+        <name>Wood Plank</name>
+        <productivity>1f</productivity>
+        <baseCost>2</baseCost>
+        <level>2</level>
+        <baseSize>1</baseSize>
+        <resourceCategory>PRODUCTION</resourceCategory>
+        <lifeTime>2000</lifeTime>
+    </ResourceBlueprint>
+    <ResourceBlueprint>
+        <name>Black Wood Plank</name>
+        <productivity>0.5f</productivity>
+        <baseCost>4</baseCost>
+        <level>2</level>
+        <baseSize>2</baseSize>
+        <resourceCategory>PRODUCTION</resourceCategory>
+        <lifeTime>2000</lifeTime>
+    </ResourceBlueprint>
+    <ResourceBlueprint>
+        <name>Food</name>
+        <productivity>1</productivity>
+        <baseCost>1</baseCost>
+        <level>1</level>
+        <baseSize>1</baseSize>
+        <resourceCategory>FOOD</resourceCategory>
+        <lifeTime>100</lifeTime>
+    </ResourceBlueprint>
+</ResourcesBlueprints>

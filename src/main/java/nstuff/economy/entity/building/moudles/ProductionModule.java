@@ -6,6 +6,7 @@ import nstuff.economy.entity.resources.RecipeBlueprint;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
@@ -14,12 +15,23 @@ import java.util.List;
  */
 
 @XmlRootElement( name = "ProductionModule" )
-@XmlType(propOrder = {"recipeBlueprints"})
+@XmlType(propOrder = {"recipeNames"})
 public class ProductionModule implements FunctionalModule {
 
     @XmlElement
+    private List<String> recipeNames;
+
     private List<RecipeBlueprint> recipeBlueprints;
 
+    public List<String> getRecipeNames() {
+        return recipeNames;
+    }
+
+    @XmlTransient
+    public void setRecipeBlueprints(List<RecipeBlueprint> recipeBlueprints) {
+        this.recipeBlueprints = recipeBlueprints;
+        recipeNames = null;
+    }
 
     @Override
     public ModuleType getType() {

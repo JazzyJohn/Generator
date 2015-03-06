@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Created by vania_000 on 05.03.2015.
  */
-@XmlRootElement(name = "ResourceWithAmountBlueprint")
-@XmlType(propOrder = {"resource","amount"})
+@XmlRootElement(name = "CharacteristicBlueprint")
+@XmlType(propOrder = {"characteristic","amount"})
 public class CharacteristicBlueprint {
 
     public CharacteristicBlueprint() {

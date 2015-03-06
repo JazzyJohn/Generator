@@ -1,19 +1,21 @@
 package nstuff.economy.entity.building;
 
+import nstuff.economy.entity.building.moudles.FunctionalModule;
+import nstuff.economy.entity.building.moudles.MineModule;
+import nstuff.economy.entity.building.moudles.ProductionModule;
 import nstuff.economy.entity.resources.RecipeBlueprint;
 import nstuff.economy.entity.resources.ResourceWithAmount;
 import nstuff.economy.entity.resources.ResourceWithAmountBlueprint;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by vania_000 on 05.03.2015.
  */
 @XmlRootElement(name = "BuildingBlueprint")
-@XmlType(propOrder = {"name","buildingCategory","workerAmount","neededListBlueprint","inventorySize","productivity","state","size","characteristicList","recipeBlueprints"})
+@XmlType(propOrder = {"name","buildingCategory","workerAmount","neededListBlueprint","inventorySize","productivity","state","size","characteristicList","recipeNames","modules"})
 public class BuildingBlueprint {
     public BuildingBlueprint() {
     }
@@ -28,7 +30,7 @@ public class BuildingBlueprint {
     private int workerAmount;
 
     @XmlElement
-    private List<ResourceWithAmountBlueprint> neededListBlueprint;
+    private List<ResourceWithAmountBlueprint> neededListBlueprint = new ArrayList<ResourceWithAmountBlueprint>();
 
     private List<ResourceWithAmount>  neededList;
 
@@ -45,10 +47,18 @@ public class BuildingBlueprint {
     private int size;
 
     @XmlElement
-    private List<CharacteristicBlueprint> characteristicList;
+    private List<CharacteristicBlueprint> characteristicList = new ArrayList<CharacteristicBlueprint>();
 
     @XmlElement
+    private List<String>  recipeNames = new ArrayList<String>();
+
     private List<RecipeBlueprint>  recipeBlueprints;
+
+    @XmlElements({
+            @XmlElement(name="MineModule", type=MineModule.class),
+            @XmlElement(name="ProductionModule", type=ProductionModule.class)
+    })
+    private List<FunctionalModule> modules;
 
 
     public BuildingCategory getBuildingCategory() {
@@ -86,7 +96,7 @@ public class BuildingBlueprint {
     public List<CharacteristicBlueprint> getCharacteristicList() {
         return characteristicList;
     }
-
+    @XmlTransient
     public void setNeededList(List<ResourceWithAmount> neededList) {
         this.neededList = neededList;
         this.neededListBlueprint = null;
@@ -95,8 +105,21 @@ public class BuildingBlueprint {
     public String getName() {
         return name;
     }
+    @XmlTransient
+    public void setRecipeBlueprints(List<RecipeBlueprint> recipeBlueprints) {
+        this.recipeBlueprints = recipeBlueprints;
+        this.recipeNames = null;
+    }
 
     public List<RecipeBlueprint> getRecipeBlueprints() {
         return recipeBlueprints;
+    }
+
+    public List<FunctionalModule> getModules() {
+        return modules;
+    }
+
+    public List<String> getRecipeNames() {
+        return recipeNames;
     }
 }

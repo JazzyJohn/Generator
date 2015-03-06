@@ -3,6 +3,9 @@ package nstuff.world;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+import nstuff.gameflow.GameFlow;
+import nstuff.managers.ContentManager;
+import nstuff.managers.ContentManagerInMemoryImpl;
 import nstuff.world.algoritm.grower.CircleGrower;
 import nstuff.world.algoritm.grower.Grower;
 import nstuff.world.algoritm.grower.SpiralGrower;
@@ -44,5 +47,7 @@ public class GeneratorModule  extends AbstractModule{
         bind(LogicFinder.class).annotatedWith(Names.named("WaterFinder")).to(WaterFinder.class).in(Singleton.class);
         bind(Random.class).in(Singleton.class);
         bind(Generator.class).in(Singleton.class);
+        bind(GameFlow.class).in(Singleton.class);
+        bind(ContentManager.class).to(ContentManagerInMemoryImpl.class).in(Singleton.class);
     }
 }

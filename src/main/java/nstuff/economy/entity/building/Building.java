@@ -5,6 +5,7 @@ import nstuff.economy.entity.resources.Recipe;
 import nstuff.economy.entity.resources.RecipeBlueprint;
 import nstuff.economy.entity.resources.Resource;
 import nstuff.economy.entity.resources.ResourceBlueprint;
+import nstuff.economy.entity.town.TownHall;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,8 +15,9 @@ import java.util.List;
  */
 public class Building implements Ticker {
 
-    public Building(BuildingBlueprint blueprint) {
+    public Building(BuildingBlueprint blueprint,TownHall hall) {
         this.blueprint = blueprint;
+        this.townHall = hall;
         for(RecipeBlueprint recipeBlueprint : blueprint.getRecipeBlueprints()){
             recipes.add(new Recipe(recipeBlueprint));
         }
@@ -24,6 +26,8 @@ public class Building implements Ticker {
     private List<Recipe> recipes;
 
     private BuildingBlueprint blueprint;
+
+    private TownHall townHall;
 
     private int workerAmount;
 
@@ -90,6 +94,10 @@ public class Building implements Ticker {
 
     public void setWorkerAmount(int workerAmount) {
         this.workerAmount = workerAmount;
+    }
+
+    public TownHall getTownHall() {
+        return townHall;
     }
 
     public List<Recipe> getRecipes() {

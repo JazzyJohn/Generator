@@ -86,11 +86,11 @@ public class SimpleGrowerBiome implements ProtoBiomeGenerator {
         } catch (JAXBException e) {
             throw new SettingException(e);
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            throw new SettingException(e);
         } catch (SAXException e) {
-            e.printStackTrace();
+            throw new SettingException(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new SettingException(e);
         }
 
 

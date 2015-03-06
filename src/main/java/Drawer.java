@@ -32,6 +32,7 @@ public class Drawer implements ActionListener,MouseListener {
 
 
 
+
     enum MapType{
         HEIGHT_MAP,
         ALL_IN,
@@ -74,8 +75,9 @@ public class Drawer implements ActionListener,MouseListener {
 
     public static final int H_OFFSET= 4;
 
-    public Drawer(){
-        injector = Guice.createInjector(new GeneratorModule());
+    public Drawer( Injector injector){
+        this.injector = injector;
+
         generator =injector.getInstance(Generator.class);
         try {
             generator.init();
@@ -664,5 +666,8 @@ public class Drawer implements ActionListener,MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+    public Map getMap() {
+        return map;
     }
 }

@@ -19,7 +19,7 @@ public class ResourceBlueprint {
     private String name;
 
     @XmlElement
-    private int productivity;
+    private float productivity;
 
     @XmlElement
     private int baseCost;
@@ -45,7 +45,7 @@ public class ResourceBlueprint {
         return name;
     }
 
-    public int getProductivity() {
+    public float getProductivity() {
         return productivity;
     }
 

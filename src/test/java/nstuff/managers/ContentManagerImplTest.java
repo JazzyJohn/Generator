@@ -1,5 +1,6 @@
-package nstuff.world.logic.generators;
+package nstuff.managers;
 
+import nstuff.world.logic.generators.SimpleGrowerBiome;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -8,13 +9,12 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Ivan.Ochincenko on 02.03.15.
  */
-public class SimpleGrowerBiomeTest {
+public class ContentManagerImplTest {
 
     @Test
     public void initTest() throws Exception {
-        SimpleGrowerBiome biom = new SimpleGrowerBiome();
+        ContentManagerInMemoryImpl biom = new ContentManagerInMemoryImpl();
         biom.init();
-        assertThat(biom.allBiomes.size(),equalTo(2));
-        assertThat(biom.maxBiomeSize,equalTo(8));
+
     }
 }

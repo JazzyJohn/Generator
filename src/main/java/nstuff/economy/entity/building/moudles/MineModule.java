@@ -26,6 +26,10 @@ public class MineModule implements FunctionalModule {
         this.mineResources = mineResources;
     }
 
+    public List<ResourceWithAmountBlueprint> getMineResourcesBlueprint() {
+        return mineResourcesBlueprint;
+    }
+
     @Override
     public ModuleType getType() {
         return ModuleType.MINE;

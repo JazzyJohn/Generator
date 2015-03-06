@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownHallBlueprints>
+    <TownHallBlueprint>
+        <name>Wood Chopper Central Camp</name>
+        <lvl>1</lvl>
+        <allowedBuildingsNames>Wood Chopper Camp</allowedBuildingsNames>
+        <workersMax>50</workersMax>
+        <nextTownHallsNames>Wooden Village</nextTownHallsNames>
+        <neededListBlueprint>
+            <resource>Wood</resource>
+            <amount>100</amount>
+        </neededListBlueprint>
+        <neededListBlueprint>
+            <resource>Food</resource>
+            <amount>100</amount>
+        </neededListBlueprint>
+    </TownHallBlueprint>
+    <TownHallBlueprint>
+        <name>Wooden Village</name>
+        <lvl>1</lvl>
+        <allowedBuildingsNames>Wood Chopper Camp</allowedBuildingsNames>
+        <allowedBuildingsNames>Sawmill</allowedBuildingsNames>
+        <workersMax>100</workersMax>
+        <neededListBlueprint>
+            <resource>Wood</resource>
+            <amount>200</amount>
+        </neededListBlueprint>
+        <neededListBlueprint>
+            <resource>Food</resource>
+            <amount>200</amount>
+        </neededListBlueprint>
+    </TownHallBlueprint>
+</TownHallBlueprints>

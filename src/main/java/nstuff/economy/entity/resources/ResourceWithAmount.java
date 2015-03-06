@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 
 public class ResourceWithAmount {
 
-    public ResourceWithAmount(ResourceBlueprint resource,int amount) {
+    public ResourceWithAmount(ResourceBlueprint resource,float amount) {
         this.resource = resource;
         this.amount = amount;
     }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildingBlueprints>
+    <BuildingBlueprint>
+        <name>Wood Chopper Camp</name>
+        <buildingCategory>MINE</buildingCategory>
+        <workerAmount>10</workerAmount>
+        <neededListBlueprint>
+            <resource>Food</resource>
+            <amount>1</amount>
+        </neededListBlueprint>
+        <inventorySize>50</inventorySize>
+        <productivity>1.0f</productivity>
+        <state>100</state>
+        <size>1</size>
+        <characteristicList>
+            <characteristic>Characteristic</characteristic>
+            <amount>100</amount>
+        </characteristicList>
+        <MineModule>
+            <mineResourcesBlueprint>
+                <resource>Wood</resource>
+                <amount>1</amount>
+            </mineResourcesBlueprint>
+            <mineResourcesBlueprint>
+                <resource>Black Wood</resource>
+                <amount>1</amount>
+            </mineResourcesBlueprint>
+        </MineModule>
+    </BuildingBlueprint>
+    <BuildingBlueprint>
+        <name>Sawmill</name>
+        <buildingCategory>PRODUCTION</buildingCategory>
+        <workerAmount>10</workerAmount>
+        <neededListBlueprint>
+            <resource>Food</resource>
+            <amount>1</amount>
+        </neededListBlueprint>
+        <inventorySize>50</inventorySize>
+        <productivity>1.0f</productivity>
+        <state>100</state>
+        <size>1</size>
+        <characteristicList>
+            <characteristic>Characteristic</characteristic>
+            <amount>100</amount>
+        </characteristicList>
+        <recipeNames>Wood to Wood Plank</recipeNames>
+        <ProductionModule>
+            <recipeNames>Wood to Wood Plank</recipeNames>
+            <recipeNames>Black Wood to Black Wood Plank</recipeNames>
+        </ProductionModule>
+    </BuildingBlueprint>
+</BuildingBlueprints>
